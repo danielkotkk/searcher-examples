@@ -1,9 +1,10 @@
 use tonic_build::configure;
 
 fn main() {
+    println!("cargo:rerun-if-changed=protos/");
     configure()
         .protoc_arg("--experimental_allow_proto3_optional") // Add this line
-        .compile(
+        .compile_protos(
             &[
                 "protos/auth.proto",
                 "protos/block.proto",
@@ -16,5 +17,5 @@ fn main() {
             ],
             &["protos"],
         )
-        .unwrap();
+        .expect("Failed to compile protos");
 }
