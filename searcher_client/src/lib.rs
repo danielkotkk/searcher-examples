@@ -81,16 +81,24 @@ pub async fn get_searcher_client_auth(
 pub async fn get_searcher_client_no_auth(
     block_engine_url: &str,
 ) -> BlockEngineConnectionResult<SearcherServiceClient<Channel>> {
+    println!("1");
     let searcher_channel = create_grpc_channel(block_engine_url).await?;
+    println!("7");
     let searcher_client = SearcherServiceClient::new(searcher_channel);
+    println!("8");
     Ok(searcher_client)
 }
 
 pub async fn create_grpc_channel(url: &str) -> BlockEngineConnectionResult<Channel> {
+    println!("2");
     let mut endpoint = Endpoint::from_shared(url.to_string()).expect("invalid url");
+    println!("3");
     if url.starts_with("https") {
+        println!("4");
         endpoint = endpoint.tls_config(tonic::transport::ClientTlsConfig::new())?;
+        println!("5");
     }
+    println!("6");
     Ok(endpoint.connect().await?)
 }
 
