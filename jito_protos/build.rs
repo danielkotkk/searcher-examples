@@ -4,7 +4,7 @@ fn main() {
     println!("cargo:rerun-if-changed=protos/");
     configure()
         .protoc_arg("--experimental_allow_proto3_optional") // Add this line
-        .compile_protos(
+        .compile(
             &[
                 "protos/auth.proto",
                 "protos/block.proto",

@@ -25,7 +25,7 @@ use solana_sdk::{
 };
 use thiserror::Error;
 use tokio::time::timeout;
-use tonic::{
+pub use tonic::{
     codegen::{Body, Bytes, InterceptedService, StdError},
     transport,
     transport::{Channel, Endpoint},
